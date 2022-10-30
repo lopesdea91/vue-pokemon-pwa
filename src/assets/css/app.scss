@@ -1,4 +1,5 @@
 @import './tailwind.scss';
+// @import './root.scss';
 
 body {
     @apply bg-slate-100;
@@ -6,4 +7,52 @@ body {
 
 #app {
     @apply h-screen w-full max-w-2xl mx-auto p-5;
+}
+
+$colors: (
+    "normal": "#A8A77A",
+    "fire": "#EE8130",
+    "water": "#6390F0",
+    "electric": "#F7D02C",
+    "grass": "#7AC74C",
+    "ice": "#96D9D6",
+    "fighting": "#C22E28",
+    "poison": "#A33EA1",
+    "ground": "#E2BF65",
+    "flying": "#A98FF3",
+    "psychic": "#F95587",
+    "bug": "#A6B91A",
+    "rock": "#B6A136",
+    "ghost": "#735797",
+    "dragon": "#6F35FC",
+    "dark": "#705746",
+    "steel": "#B7B7CE",
+    "fairy": "#D685AD",
+);
+
+@each $name,
+$color in $colors {
+    @for $i from 1 through 10 {
+
+        @if $i < 10 {
+            .bg-pokemon-#{$name}-#{$i}0 {
+                background-color: #{$color}#{$i}0;
+            }
+
+            .border-pokemon-#{$name}-#{$i}0 {
+                border-color: #{$color}#{$i}0;
+            }
+        }
+
+        @else {
+            .bg-pokemon-#{$name}-100 {
+                background-color: #{$color};
+            }
+
+            .border-pokemon-#{$name}-100 {
+                border-color: #{$color};
+            }
+        }
+
+    }
 }
