@@ -36,8 +36,6 @@ const actions = {
 
 		const result: { results: ApiPokemon[], count: number } = await request(url);
 
-		console.log('result', result);
-
 		const allPromise = result.results.map((el) => request(el.url));
 
 		const resultData: PokemonResponse[] = await Promise.all(allPromise);
