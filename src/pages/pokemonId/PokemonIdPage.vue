@@ -32,15 +32,8 @@ onUnmounted(() => {
 
   <PokemonDetails
     :load="load"
-    :id="pokemon.id"
-    :name="pokemon.name"
-    :imageUrl="pokemon.imageUrl"
-    :type="pokemon.type"
-    :types="pokemon.types"
-    :abilities="pokemon.abilities"
-    :height="pokemon.height"
-    :weight="pokemon.weight"
-  />
+    :pokemon="pokemon"
+    />
 </template>
 
 <style lang="scss" scoped>

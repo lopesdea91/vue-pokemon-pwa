@@ -4,7 +4,8 @@ export type ApiPokemon = {
 };
 
 export type PokemonAbility = {
-	name: string, url: string
+	name: string
+	url: string
 }
 export type PokemonSprites = {
 	back_default: string | null

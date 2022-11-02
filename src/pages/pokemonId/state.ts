@@ -33,10 +33,8 @@ const actions = {
 
 		const parseRequest = pokemonParseRequest(result);
 
-		setTimeout(() => {
-			_state.load = false;
-			_state.pokemon = parseRequest;
-		}, 1000)
+		_state.load = false;
+		_state.pokemon = parseRequest;
 	},
 
 	reset() {

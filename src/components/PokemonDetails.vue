@@ -1,51 +1,39 @@
 <script setup lang="ts">
-import { PokemonType, PokemonAbility } from "../types";
+import { computed } from "vue";
+import { Pokemon } from "../types";
 defineProps<{
   load: Boolean;
-  id: Number;
-  name: string;
-  imageUrl: string;
-  type: string;
-  types: PokemonType;
-  abilities: PokemonAbility;
-  height: Number;
-  weight: Number;
+  pokemon: Pokemon;
 }>();
+
 </script>
 
 <template>
   <div class="pokemon-details" :class="{ load }">
-    <div
-      class="image"
-      :class="`bg-pokemon-${type}-10 border-pokemon-${type}-50`"
-    >
-      <img v-if="imageUrl" class="img" :src="imageUrl" />
+    <div class="image" :class="`bg-pokemon-${pokemon.type}-10 border-pokemon-${pokemon.type}-50`">
+      <img v-if="pokemon.imageUrl" class="img" :src="pokemon.imageUrl" />
       <Icon v-else class="icon" icon="fa-solids fa-spinner" />
     </div>
 
-    <div class="details" :class="[`bg-pokemon-${type}-10`]">
+    <div class="details" :class="[`bg-pokemon-${pokemon.type}-10`]">
       <section class="info">
-        <h2 class="name">{{ name || "..." }}</h2>
-        <span class="id"> #{{ id }} </span>
+        <h2 class="name">{{ pokemon.name || "..." }}</h2>
+        <span class="id"> #{{ pokemon.id }} </span>
       </section>
 
       <section>
-        <p>Altura: {{ height || "..." }}</p>
+        <p>Altura: {{ pokemon.height || "..." }}</p>
       </section>
 
       <section>
-        <p>Peso: {{ weight || "..." }}</p>
+        <p>Peso: {{ pokemon.weight || "..." }}</p>
       </section>
 
       <section>
         <h3>Habilidade(s)</h3>
         <ul class="abilities">
-          <li
-            v-for="el in abilities"
-            :key="el.name"
-            class="ability"
-            :class="[`bg-pokemon-${type}-80`, `border-pokemon-${type}-100`]"
-          >
+          <li v-for="(el, i) in pokemon.abilities" :key="i" class="ability"
+            :class="[`bg-pokemon-${pokemon.type}-80`, `border-pokemon-${pokemon.type}-100`]">
             {{ el.name }}
           </li>
         </ul>
@@ -54,12 +42,8 @@ defineProps<{
       <section>
         <h3>Tipo</h3>
         <ul class="types">
-          <li
-            v-for="el in types"
-            :key="el.name"
-            class="type"
-            :class="[`bg-pokemon-${type}-80`, `border-pokemon-${type}-100`]"
-          >
+          <li v-for="(el, j) in pokemon.types" :key="`types-${j}`" class="type"
+            :class="`bg-pokemon-${pokemon.type}-80 border-pokemon-${pokemon.type}-100`">
             {{ el.name }}
           </li>
         </ul>
@@ -82,19 +66,23 @@ defineProps<{
     }
   }
 }
+
 .image {
   @apply h-80 lg:h-96 rounded-lg border-2 flex;
 
-  & > * {
+  &>* {
     @apply m-auto;
   }
+
   .icon {
     @apply text-3xl animate-spin;
   }
+
   .img {
     @apply block h-full mx-auto;
   }
 }
+
 .details {
   @apply grow p-2;
 
@@ -108,6 +96,7 @@ defineProps<{
     .name {
       @apply font-bold text-2xl text-gray-800;
     }
+
     .id {
       @apply text-sm text-gray-400;
     }
