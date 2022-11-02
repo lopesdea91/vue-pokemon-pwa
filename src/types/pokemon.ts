@@ -3,7 +3,7 @@ export type ApiPokemon = {
 	url: string;
 };
 
-type PokemonAbility = {
+export type PokemonAbility = {
 	name: string, url: string
 }
 export type PokemonSprites = {
@@ -16,7 +16,7 @@ export type PokemonSprites = {
 	front_shiny: string | null
 	front_shiny_female: string | null
 }
-type PokemonType = {
+export type PokemonType = {
 	name: string, url: string
 }
 type PokemonCommun = {

@@ -2,11 +2,11 @@
 // @import './root.scss';
 
 body {
-    @apply bg-slate-100;
+    @apply bg-slate-100 py-4;
 }
 
 #app {
-    @apply h-screen w-full max-w-2xl mx-auto p-5;
+    @apply w-full max-w-6xl mx-auto;
 }
 
 $colors: (

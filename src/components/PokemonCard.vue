@@ -4,18 +4,18 @@ import homeStore from "../pages/homePage/state";
 
 const { load } = toRefs(homeStore.state);
 
-defineProps({
-  id: { type: Number },
-  name: { type: String },
-  imageUrl: { type: String },
-  type: { type: String, default: "" },
-});
+defineProps<{
+  id: number;
+  name: string;
+  imageUrl: string;
+  type: string;
+}>();
 </script>
 
 <template>
   <div
     class="pokemon-card"
-    :class="([`bg-pokemon-${type}-10`, `border-pokemon-${type}-50`], { load })"
+    :class="`border-pokemon-${type}-50 bg-pokemon-${type}-10 ${load}`"
   >
     <div class="pokemon-card-image">
       <img class="img" :src="imageUrl" />
@@ -36,7 +36,7 @@ defineProps({
 
   &:hover {
     .img {
-      @apply scale-[1.15] rotate-2;
+      @apply scale-[1.1] rotate-2;
     }
   }
 }

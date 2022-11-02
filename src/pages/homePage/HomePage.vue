@@ -1,7 +1,7 @@
-<script  setup lang="ts">
+<script setup lang="ts">
 import homeStore from "./state";
 import BasePagination from "@/components/base/BasePagination.vue";
-import BaseInputSearch from "@/components/base/BaseInputSearch.vue";
+// import BaseInputSearch from "@/components/base/BaseInputSearch.vue";
 import PokemonCard from "@/components/PokemonCard.vue";
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
@@ -16,11 +16,11 @@ const { push } = useRouter();
 <template>
   <h1 class="title">Pokédex</h1>
 
-  <BaseInputSearch />
+  <!-- <BaseInputSearch /> -->
 
   <BasePagination />
 
-  <div class="items">
+  <div class="list-cards">
     <PokemonCard
       v-for="item in homeStore.state.items"
       :key="item.id"
@@ -43,9 +43,9 @@ const { push } = useRouter();
 
 <style lang="scss" scoped>
 .title {
-  @apply text-6xl text-gray-800 mb-4 md:mb-6 md:mt-6 text-center;
+  @apply text-6xl text-gray-800 mb-4 md:mb-6 text-center;
 }
-.items {
-  @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-4 mb-4;
+.list-cards {
+  @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4;
 }
 </style>

@@ -16,7 +16,7 @@ const _state = reactive<IState>({
 	items: [],
 	total: 0,
 	page: 1,
-	limit: 16,
+	limit: 20,
 })
 
 const state = readonly(_state)

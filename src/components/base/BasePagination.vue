@@ -8,23 +8,32 @@ const { total, page, limit } = toRefs(homeStore.state);
 const totalPage = computed(() => Math.ceil(total.value / limit.value));
 
 const items = computed(() => {
-  const qtyBtn = 10;
+  const qtyBtn = 9;
+  const currentPage = page.value;
+  const numMaxSplice = totalPage.value - qtyBtn;
+  const numMinSplice = Math.ceil(qtyBtn / 2);
 
-  const numMaxSplice = totalPage.value - qtyBtn / 2;
-  const numMinSplice = qtyBtn / 2;
+  // identifies splice value
+  const isLarger = currentPage >= numMaxSplice;
+  const isAverage = currentPage < numMaxSplice && currentPage > numMinSplice;
+  const isLower = currentPage < numMaxSplice && currentPage <= numMinSplice;
   let numSplice = 1;
 
-  if (page.value > numMinSplice) {
-    numSplice = numMinSplice;
+  if (isLarger) {
+    numSplice = numMaxSplice - 4;
   }
-  //   n = page.value < limitSplice;
-  //   const nSplice = n ? page.value : limitSplice;
+  if (isAverage) {
+    numSplice = currentPage - 4;
+  }
+  if (isLower) {
+    numSplice = 1;
+  }
 
   return Array(totalPage.value)
     .fill(1)
     .map((_, i) => {
       const numPage = i + 1;
-      const active = numPage === page.value;
+      const active = numPage === currentPage;
 
       return {
         page: numPage,

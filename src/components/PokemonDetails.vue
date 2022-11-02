@@ -1,22 +1,23 @@
 <script setup lang="ts">
-const props = defineProps({
-  load: { type: Boolean },
-  id: { type: Number },
-  name: { type: String },
-  imageUrl: { type: String },
-  type: { type: String, default: "" },
-  types: { type: Array },
-  abilities: { type: Array },
-  height: { type: Number },
-  weight: { type: Number },
-});
+import { PokemonType, PokemonAbility } from "../types";
+defineProps<{
+  load: Boolean;
+  id: Number;
+  name: string;
+  imageUrl: string;
+  type: string;
+  types: PokemonType;
+  abilities: PokemonAbility;
+  height: Number;
+  weight: Number;
+}>();
 </script>
 
 <template>
   <div class="pokemon-details" :class="{ load }">
     <div
       class="image"
-      :class="[`bg-pokemon-${type}-10`, `border-pokemon-${type}-50`]"
+      :class="`bg-pokemon-${type}-10 border-pokemon-${type}-50`"
     >
       <img v-if="imageUrl" class="img" :src="imageUrl" />
       <Icon v-else class="icon" icon="fa-solids fa-spinner" />
