@@ -4,17 +4,17 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  let base = '/'
+  // let base = '/'
 
-  if (mode !== 'development') {
-    base = '/vue-pokemon-pwa'
-  }
+  // if (mode !== 'development') {
+  //   base = '/vue-pokemon-pwa'
+  // }
 
   return {
     plugins: [
       vue({ reactivityTransform: true })
     ],
-    base,
+    // base,
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
